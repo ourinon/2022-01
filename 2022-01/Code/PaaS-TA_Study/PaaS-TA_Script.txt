@@ -1,0 +1,240 @@
+=================================================================================================================
+Bosh VM 배포
+=================================================================================================================
+PaaS-TA 설치 파일 다운로드
+sudo apt install curl
+mkdir workspace
+cd workspace
+curl -Lo paasta-5.0.zip https://nextcloud.paas-ta.org/index.php/s/Qi2zGPnGNEjb4Ax/download
+unzip paasta-5.0.zip
+mv bosh-lite paasta-5.0
+
+Bosh 설치
+curl -Lo ./bosh https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-6.1.0-linux-amd64 
+chmod +x ./bosh 
+sudo mv ./bosh /usr/local/bin/bosh 
+bosh -v
+
+종속성 파일 설치
+sudo apt-get install -y build-essential zlibc zlib1g-dev ruby ruby-dev openssl libxslt1-dev libxml2-dev libssl-dev libreadline7 libreadline-dev libyaml-dev libsqlite3-dev sqlite3 
+
+VirtualBox 6.0 설치
+sudo apt update
+sudo apt upgrade 
+
+wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
+wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian bionic contrib" 
+
+sudo apt update 
+sudo apt install virtualbox-6.0 
+VBoxManage --version 
+
+Deploy Bosh VM
+cd ~/workspace/paasta-5.0/deployment/bosh-deployment
+chmod 755 *.sh
+./deploy-bosh-lite.sh
+
+Alias 설정
+bosh alias-env micro-bosh -e 10.0.1.6 --ca-cert <(bosh int warden/creds.yml --path /director_ssl/ca) 
+
+Bosh login 쉘 스크립트 생성
+vi login.sh
+#!/usr/bin
+
+export BOSH_CA_CERT=$(bosh int ./warden/creds.yml --path /director_ssl/ca)
+export BOSH_CLIENT=admin
+export BOSH_CLIENT_SECRET=$(bosh int ./warden/creds.yml --path /admin_password) 
+
+Bosh login 쉘 적용
+source login.sh
+
+Bosh login 확인
+bosh -e micro-bosh env
+
+jumpbox key 생성 (Bosh VM 로그인 용) 
+bosh int warden/creds.yml --path /jumpbox_ssh/private_key > jumpbox.key 
+chmod 600 jumpbox.key
+ssh jumpbox@10.0.1.6 -i jumpbox.key
+안될경우 ssh-keygen -R [ip] 입력하면 해결
+
+Bosh로 배포된 프로그램 process 확인 (bosh vm or paas-ta vm ssh 접속 후 이용)
+sudo su
+monit summary 
+
+credhub cli 설치
+cd ~
+wget https://github.com/cloudfoundry-incubator/credhub-cli/releases/download/2.0.0/credhub-linux-2.0.0.tgz
+tar -xvf credhub-linux-2.0.0.tgz
+chmod +x credhub 
+sudo mv credhub /usr/local/bin/credhub 
+credhub --version
+
+credhub shell 생성
+cd ~/workspace/paasta-5.0/deployment/bosh-deployment
+vi credhub_login.sh
+
+#!/usr/bin
+
+export CREDHUB_CLIENT=credhub-admin 
+export CREDHUB_SECRET=$(bosh int --path /credhub_admin_client_secret warden/creds.yml) 
+export CREDHUB_CA_CERT=$(bosh int --path /credhub_tls/ca warden/creds.yml) 
+
+credhub 로그인
+credhub login -s https://10.0.1.6:8844 --skip-tls-validation 
+
+vbox 환경저장
+vboxmanage controlvm $(bosh int warden/state.json --path /current_vm_cid) savestate
+
+Virtual Box vm 복구
+vboxmanage startvm $(bosh int warden/state.json --path /current_vm_cid) --type headless
+
+Bosh login
+cd ~/workspace/paasta-5.0/deployment/bosh-deployment
+source login.sh
+
+update cloud config (bosh-lite-cloud-config.yml 수정 필요)
+cd ~/workspace/paasta-5.0/deployment/cloud-config
+vi bosh-lite-cloud-config.yml
+===========================================
+asis
+  - disk_size: 30720
+
+tobe
+- disk_size: 30720
+===========================================
+bosh -e micro-bosh update-cloud-config bosh-lite-cloud-config.yml
+
+runtime config 등록
+cd ~/workspace/paasta-5.0/deployment/bosh-deployment
+./update-runtime-config.sh
+bosh -e micro-bosh configs
+
+stemcell 등록
+cd ~/workspace/paasta-5.0/stemcell/paasta
+bosh -e micro-bosh upload-stemcell bosh-stemcell-315.64-warden-boshlite-ubuntu-xenial-go_agent.tgz
+bosh -e micro-bosh stemcells
+
+PaaS-TA 배포
+cd ~/workspace/paasta-5.0/deployment/paasta-deployment
+chmod +x ./*.sh
+vi deploy-bosh-lith.sh
+===========================================
+as-is
+bosh -d paasta -n deploy paasta-deployment.yml
+
+to-be
+bosh -e micro-bosh -d paasta -n deploy paasta-deployment.yml
+===========================================
+./deploy-bosh-lite.sh
+ls -
+IP route 설정 (bosh-lite를 이용할때)
+sudo ip route add   10.244.0.0/16 via 10.0.1.6
+
+=================================================================================================================
+
+
+=================================================================================================================
+기타 실습
+=================================================================================================================
+기타 알아두어야 할 Bosh 명령어들
+bosh -e micro-bosh instances
+bosh -e micro-bosh env --details
+bosh -e micro-bosh stemcells
+bosh -e micro-bosh releases
+bosh -e micro-bosh tasks --recent
+bosh -e micro-bosh locks
+bosh -e micro-bosh cancel-task 123
+bosh -e micro-bosh -d paasta vms --vitals
+bosh -e micro-bosh -d paasta ssh api
+
+cf-cli 설치
+wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | sudo apt-key add -
+echo "deb https://packages.cloudfoundry.org/debian stable main" | sudo tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+sudo apt update
+sudo apt install cf-cli
+cf -v
+
+cf login
+cf login --skip-ssl-validation
+https://api.10.244.0.34.xip.io
+admin/admin
+
+user 생성
+cf create-user edu-user user
+
+org생성
+cf create-org edu-org
+cf orgs
+
+space
+cf create-space -o edu-org edu-space
+cf spaces
+
+org role 설정
+cf set-org-role edu-user edu-org OrgManager
+
+space role 설정
+cf set-space-role edu-user edu-org edu-space SpaceDeveloper
+
+java8  설치
+sudo apt update
+sudo apt install openjdk-8-jdk
+java -version
+
+git 설치
+sudo apt install git
+git --version
+
+spring-music 다운로드 및 빌드
+cd ~/workspace
+git clone https://github.com/cloudfoundry-samples/spring-music
+cd spring-music/
+./gradlew clean assemble
+
+manifest 수정
+vi manifest.yml
+
+cf target 변경
+cf target -o edu-org -s edu-space
+
+spring-music 배포
+cf push
+cf apps
+
+로그 확인
+cf app spring-music
+cf logs spring-music
+cf logs spring-music --recent
+
+cf를 이용한 ssh 터널링
+cf ssh welcome-cf -L 9999:10.10.4.14:3306
+
+bosh -e micro-bosh -d paasta delete-deployment --force
+
+credhub find | grep paasta
+입력후 나온 애들 삭제후 재배포 실행했지만 동일오류
+
+curl api.10.244.0.34.xip.io 실행시 
+curl: (6) Could not resolve host: api.10.244.0.34.xip.io
+에러가 나는상황
+
+xip -> nip 로 수정 및 
+
+$ credhub find | grep paasta 로 나온것들 삭제 
+
+paasta deployment 재배포 --- 해결
+///////////////////////////////////////////////////////////////////////////////////
+
+PaaS-TA 개발 실무 
+
+Portal 
+
+.사용자포탈 - 애플리케이션의 배포 및 관리, 개발에 필요한 서비스 인스턴스 관리
+및 계정관리와 공지사항 같은 포탈 관리 기능을 제공,
+애플리케이션 플랫폼에 배포되는 응용애플리케이션에 대한 모니터링 제공하고 응용
+애플리케이션이 문제가 있는 부분을 포탈 사용자 관리자에게 제공하여 원활한 운영함
+
+.운영자 포탈 - CCDB, UAADB, PORTALDB로부터 데이터를 조회하고 클라우드 컨트롤러
+에서 제공하는 REST API 호출을 통해 상호작용.
+웹 사용자 인터페이스 환경에서 플랫폼을 관리할수 있게함.
