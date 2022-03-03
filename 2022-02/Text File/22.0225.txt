@@ -8,3 +8,66 @@
 
 3. 정상적으로 add, commit, push 하기
 
+운영체제와 닷넷 프레임워크
+
+- 닷넷프레임워크는 운영체제안에 들어있으며 밀접한 관련이 있다.
+
+구성 요소
+
+- 클래스 라이브러리와 CLR (Common LanGuage Runtime)
+
+닷넷 프레임워크 구성
+
+- 클래스 라이브러리
+. Window Form
+. ASP.NET
+. ADO.NET
+. 기본 클래스 라이브러리(BCL)
+
+- CLR 고용언어런타임
+
+특징 - C#은 라이브러리가 정말많다, 
+
+C# 언어 + 클래스라이브러리 = C# 프로그래밍
+
+MSDN 참고
+
+-클래스라이브러리 BCL
+
+. BCl : 기본 클래스
+
+. Window Form : 윈도우 응용 프로그램 제작을 위한 클래스 라이브러리
+
+. ASP.NET : 웹 클래스 라이브러리
+
+. ADO.NET : 데이터베이스 클래스 라이브러리
+
+CLR Common language Runtime
+
+- 컴파일된 C# 코드를 실행하는 역할
+
+- MSIL, IL, 중간언어
+
+. Visual Studio 에서 C# 코드를 컴파일한 코드
+. *.exe, *.dll (어셈블리)
+. 닷넷 언어인 VB, C# 등의 공통 언어
+
+CTS와 CLS
+
+CTS는 공통 데이터형과 형식정의
+. int 0< System.Int32
+. float -> System.Single
+
+CLS는 공통 언어 사양 정의
+닷넷 언어가 지켜야 할 최소 코드 규칙
+
+C# 프로그램 실행 과정에서 어셈블리(1차 컴파일 산출물)*.dll 파일을 생성한후 .NET Framework안에 JIT 컴파일러가
+네이티브 기계어 코드로 변환되어 최종 실행된다. 이 .NET Framework의 역할 수행으로 인해 OS에 관계없이 프로그램을
+실행 시킬수있다.
+
+
+C#언어 -> 컴파일 -> MSIL -> CLR -> 실행
+     (visualStudio)  (결과물, *.dll)
+
+
+

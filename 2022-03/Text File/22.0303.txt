@@ -1,0 +1,6 @@
+git 파일을 다른곳에서 init한 파일로 바꾼 이력이 있다면 사용자 email 과 이름이 변경된 상태로 commit이 된다.
+
+이름과 이메일 주소 변경 git 명령어
+
+git config --global user.name "USERNAME"
+git config --global user.email "USEREMAIL"
