@@ -1,0 +1,121 @@
+칵테일 나무 클라우드
+
+- 도커란? 컨테이너 기반의 오픈소스 가상화 플랫폼이다.
+
+- 다양한 프로그램 및 실행환경을 컨테이너로 동일한 인터페이스를 제공하여 프로그램 및 배포 관리 단순화
+
+- 컨테이너란? 격리된 공간에서 프로세스가 동작하는 기술이다.
+
+- 가상화 기수의 하나이지만 기존 방식과 차이가있다.
+
+쿠버네티스의 아키텍처 
+
+환경 구축
+
+용어정리
+
+- Add-on : Add-on은 container 관리 기능 외에 kubernetes cluster에 확장 기능을 제공한다. 대표적으로 Monitoring과 Service Mesh를 예로 들 수 있다.
+
+- Cluster : Cluster는 container가 실행 되는 Infrastructure다. Cluster는 container실행에 필요한 computing 자원을 제공하며, Cluster는 node로 구성된다.
+
+- Ingress Controller : Cluster 외부에서 container로 접속은 ingress controller가 담당한다. ingress controller는 외부 traffic을 host 명과 경로로 구분하여
+container로 routing 한다.
+
+- Multi-tenancy : 칵테일 클라우드는 조직 또는 팀별 독립적인 작업 공간을 제공하며, 필요한 컴퓨팅 자원을 할당하고, 관리할 수 있다.
+
+- Namespace : Cluster를 논리적으로 나누어 container를 배포하고 관리하는 일종의 가상 cluster이다.
+
+- Platform : Platform은 칵테일 클라우드를 사용하는 기본 단위 입니다. 모든 기능은 플랫폼을 통해 사용 할 수 있다.
+
+- Pod : Container를 배포/실행하는 resource다. Pod는 하나 이상의 container로 구성된다.
+
+- Sidecar Container : Pod안에 main container의 기능을 확장하거나 강화하는 용도로 추가하는 container이다.
+
+- Service Map : 어플리케이션을 구성하고 관리하는 단위이다. 대표적인 Service Map resource는 container를 배포하고 관리하는 Workload를 들 수 있으며,
+ 이 외에 Persistence volume, Config Map/Secret, Service 노출 등의 resource가 있다.
+
+- Workload : Pod를 어떤 형태로 배포하고 실행할지, Pod 상태 확인, 문제 시 재시작 등 pod의 전체 수명 주기를 관리한다.
+
+- Workspace : Workspace는 team 또는 조직 별로 제공되는 독립적인 업무 공간이다. Workspace에는 애플리케이션의 배포와 운영에 필요한 자원이 할당된다.
+
+
+가상화
+1. 컴퓨터에서 컴퓨터 리소스의 추상화를 일컫는 광범위한 용어로 "물리적인 컴퓨터 리소스의 특징을 다른 시스템, 응용 프로그램, 최종 사용자들이 리소스와 상호
+작용하는 방식으로부터 감추는 기술". 서버, 운영 체제, 응용 프로그램, 또는 저장 장치와 같은 단일한 물리적 리소스를 다중 논리 리소스로서의 기능을 하는 것처
+럼 보이게 만드는 것. 반대로도 가능.
+서버 가상화를 통해 하나의 컴퓨터에서 동시에 1개 이상의 운영체제를 가동하여 용량의 10~15%만 사용하는 효용률(utilization rate)을 70% 이상으로 올려 같은 분
+량의 업무처리에서 요구하는 컴퓨터 수를 격감시킴
+
+2. 망분리 공공기관, 금융회사를 비롯해 외부 침입으로 고객 정보 같은 주요 자료가 유출될 위험이 있는 경우 외부망 네트웍과 내부망 네트웍을 분리 사용하도록 하여 내부
+정보의 유출을 막는 목적으로 도입된 정부 규제
+
+3. 클라우드 소프트웨어와 데이터를 인터넷과 연결된 중앙 컴퓨터에 저장, 인터넷에 접속하기만 하면 언제 어디서든 데이터를 이용할 수 있도록 하는 서비스
+
+4. 프라이빗 클라우드 오직 하나의 단체 또는 기업을 위해 운영되는 폐쇄형 클라우드 인프라스트럭처로, 내부적으로 또는 서드파티에 의해 관리를 받거나 호스팅 됨
+
+5. 퍼블릭 클라우드 공개적 이용을 위해 열린 네트워크를 통해 렌더링 되는 클라우드. 아마존 웹 서비스(AWS), 마이크로소프트 애저(Azure), 구글 클라우드 플랫폼(GCP)이 대표적이며,
+IaaS(Infrastructure as a Service)라고도 함. 여러 회사의 퍼블릭 클라우드를 동시에 이용하는 것을 멀티 클라우드라고 함
+
+6. 하이브리드 클라우드 뚜렷한 실체는 유지하지만 함께 묶여있는 둘 이상의 클라우드 (프라이빗, 퍼블릭)의 조합으로, 여러 개의 배치 모델들의 이점을 제공하며, 이들과 기존 IT 자원(On
+Premise, 전산실, IDC 등)과의 병용을 의미하기도 함
+
+7. 데스크탑 가상화 (VDI) VDI(Virtual Desktop Infrastructure)란 물리적으로 존재하진 않지만 실제 작동하는 컴퓨터 안에서 작동하는 또 하나의 컴퓨터를 만들 수 있는 기술
+
+8. 가상머신 (VM) VM(Virtual Machine)은 컴퓨팅환경을 소프트웨어로 구현한 것. 가상머신 상에서 운영 체제나 응용 프로그램을 설치 및 실행할 수 있음
+
+9. 하이퍼바이저
+(Hypervisor)
+프로세서나 메모리와 같은 다양한 컴퓨터 자원에 서로 다른 각종 운영 체계(OS)의 접근 방법을 통제하는 소프트웨어로서, 다수의 OS를 하나의 컴퓨터 시스템에서
+가동할 수 있게 하는 소프트웨어
+
+10. 프로비저닝 클러스터에서 쓰지 않고 있는 자원을 파악하고, 필요한 순간에 자원을 실시간으로 할당해 서비스를 생성하고 적절하게 제공하는 기술. Provisioning
+
+11. 컨테이너 (Container) '소프트웨어를 네트워크, 보안, 스토리지 등이 다른 컴퓨팅 환경으로 이동하면서도 안정적으로 실행하는 방법으로, 애플리케이션과 그 실행에 필요한 라이브러리,
+바이너리, 구성 파일 등을 패키지로 묶어 배포하는 것
+
+12. 도커 (Docker) 리눅스의 응용프로그램들을 소프트웨어 컨테이너 안에 배치시키는 일을 자동화하는 오픈소스 프로젝트. 도커는 리눅스에서 운영 체제 수준 가상화의 추상화 및
+자동화 계층을 추가적으로 제공
+
+13. 쿠버네티스
+(Kubernetes, k8s)
+디플로이 자동화, 스케일링, 컨테이너화된 애플리케이션의 관리를 위한 오픈 소스 시스템. 원래 구글이 설계하여 자사의 주요 인터넷 서비스에 적용하고 현재는
+리눅스재단이 관리. 목적은 여러 클러스터의 호스트 간에 애플리케이션 컨테이너의 배치, 스케일링, 운영을 자동화하기 위한 플랫폼을 제공하는 것
+
+14. 데브옵스 (DevOps) 소프트웨어의 개발(Development)과 운영(Operation)의 합성어. 소프트웨어 개발자와 정보기술 전문가 간의 소통, 협업 및 통합을 강조하는 개발 환경이나 문화
+
+15. 소프트웨어 정의
+네트워크(SDN)
+네트워크의 제어부를 트래픽을 전달하는 데이터부와 분리한다는 개념. 분리된 제어부만을 모은 소프트웨어를 중앙에서 관리하고 프로그래밍이 가능한 네
+트워크를 만드는 것. 이로써 통신장비회사는 소프트웨어 기업이 되었으며, 이들 장비는 기존의 범용서버를 사용하여 개발한 SW를 탑재하고 클라우드화하
+여 트래픽 집중에 효율적으로 대응함. Software Defined Network
+
+16. 네트워크 기능 가상화
+(NFV)
+SDN 개념하에서 범용 서버를 사용하여 네트워크 서비스를 가상화하여, 하드웨어 기반이었던 네트워크 서비스를 소프트웨어로 구현한 서비스를 가상 네트
+워크 기능(VNF;Virtual Network Function)라고 부르며, 이는 NFV 환경에서 구동. 이런 VNF에는 라우팅, 방화벽, 로드밸런싱, WAN 가속, 암호화 등이 있으며,
+네트워크 서비스 가상화로 통신사는 서비스를 동적으로 제공 즉, 클라우드 서비스처럼 수요에 맞춰 쉽게 늘리고 줄임. Network Functions Virtualization
+
+컴파일 - 코드를 기계어로 번역한다. 
+
+디버깅 - 소스코드에있는 버그를 찾는 과정
+
+빌드 - 코드 -> 컴파일 -> 실행파일 !
+
+실행 - 말그대로 실행 (Run)
+
+OverlayManagement.OverlayControlManager.CheckSingleModifyObjectSelect(INMapInfo mapInfo, ShapeObject ovl_obj, Point mouse_pt) 파일 C:\KNCCS\nc4itsd\src\OverlayManagement\OverlayControlManager.cs:줄 4142
+   위치: OverlayManagement.OverlayControlManager.HandleMouseDown(INMapInfo mapInfo, Point mouse_pt, MouseButtons mouse_buttons, Keys modifier_keys, Boolean& skip_mapmove) 파일 C:\KNCCS\nc4itsd\src\OverlayManagement\OverlayControlManager.cs:줄 388
+   위치: OverlayManagement.TSDCPOverlayManagement.TSDCPOverlayManagementServiceImpl.HandleMouseDown(INMapInfo mapInfo, Point pt, MouseButtons mouse_buttons, Keys modifier_keys) 파일 C:\KNCCS\nc4itsd\src\OverlayManagement\TSDCPOverlayManagement\TSDCPOverlayManagementServiceImpl.cs:줄 187
+   위치: KnccsGis.KNCCSForm._MapApplicationService_MapMouseDown(Object sender, NMapMouseEventArgs evArgs) 파일 C:\KNCCS\nc4itsd\src\KnccsGis\KNCCSForm.cs:줄 3978
+   위치: System.EventHandler`1.Invoke(Object sender, TEventArgs e)
+   위치: JINet.MapApplication.NMapApplicationService.OnMapMouseDown(NMapMouseEventArgs e) 파일 C:\JIMAP\src\JINet.MapApplication\NMapApplicationService.cs:줄 1285
+   위치: JINet.MapApplication.NMapApplicationService.FireMapMouseDown(NMapMouseEventArgs e) 파일 C:\JIMAP\src\JINet.MapApplication\NMapApplicationService.cs:줄 458
+   위치: JINet.Views.MapControl.NMapControlPresenterBase.HandleMouseDown(NMouseEventArgs e) 파일 C:\JIMAP\src\JINet.Views\MapControl\NMapControlPresenterBase.cs:줄 164
+   위치: JINet.Views.Winform.MapControl.NWinformMapControl.OnMouseDown(MouseEventArgs e) 파일 C:\JIMAP\src\JINet.Views.Winform\MapControl\NWinformMapControl.cs:줄 598
+   위치: System.Windows.Forms.Control.WmMouseDown(Message& m, MouseButtons button, Int32 clicks)
+   위치: System.Windows.Forms.Control.WndProc(Message& m)
+   위치: System.Windows.Forms.UserControl.WndProc(Message& m)
+   위치: System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
+
+
