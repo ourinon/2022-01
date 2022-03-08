@@ -103,19 +103,7 @@ SDN 개념하에서 범용 서버를 사용하여 네트워크 서비스를 가�
 
 실행 - 말그대로 실행 (Run)
 
-OverlayManagement.OverlayControlManager.CheckSingleModifyObjectSelect(INMapInfo mapInfo, ShapeObject ovl_obj, Point mouse_pt) 파일 C:\KNCCS\nc4itsd\src\OverlayManagement\OverlayControlManager.cs:줄 4142
-   위치: OverlayManagement.OverlayControlManager.HandleMouseDown(INMapInfo mapInfo, Point mouse_pt, MouseButtons mouse_buttons, Keys modifier_keys, Boolean& skip_mapmove) 파일 C:\KNCCS\nc4itsd\src\OverlayManagement\OverlayControlManager.cs:줄 388
-   위치: OverlayManagement.TSDCPOverlayManagement.TSDCPOverlayManagementServiceImpl.HandleMouseDown(INMapInfo mapInfo, Point pt, MouseButtons mouse_buttons, Keys modifier_keys) 파일 C:\KNCCS\nc4itsd\src\OverlayManagement\TSDCPOverlayManagement\TSDCPOverlayManagementServiceImpl.cs:줄 187
-   위치: KnccsGis.KNCCSForm._MapApplicationService_MapMouseDown(Object sender, NMapMouseEventArgs evArgs) 파일 C:\KNCCS\nc4itsd\src\KnccsGis\KNCCSForm.cs:줄 3978
-   위치: System.EventHandler`1.Invoke(Object sender, TEventArgs e)
-   위치: JINet.MapApplication.NMapApplicationService.OnMapMouseDown(NMapMouseEventArgs e) 파일 C:\JIMAP\src\JINet.MapApplication\NMapApplicationService.cs:줄 1285
-   위치: JINet.MapApplication.NMapApplicationService.FireMapMouseDown(NMapMouseEventArgs e) 파일 C:\JIMAP\src\JINet.MapApplication\NMapApplicationService.cs:줄 458
-   위치: JINet.Views.MapControl.NMapControlPresenterBase.HandleMouseDown(NMouseEventArgs e) 파일 C:\JIMAP\src\JINet.Views\MapControl\NMapControlPresenterBase.cs:줄 164
-   위치: JINet.Views.Winform.MapControl.NWinformMapControl.OnMouseDown(MouseEventArgs e) 파일 C:\JIMAP\src\JINet.Views.Winform\MapControl\NWinformMapControl.cs:줄 598
-   위치: System.Windows.Forms.Control.WmMouseDown(Message& m, MouseButtons button, Int32 clicks)
-   위치: System.Windows.Forms.Control.WndProc(Message& m)
-   위치: System.Windows.Forms.UserControl.WndProc(Message& m)
-   위치: System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+
 
 
 
