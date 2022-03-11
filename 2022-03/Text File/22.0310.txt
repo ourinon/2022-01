@@ -1,0 +1,59 @@
+DockerFile = 이미지를 작성할 수 있는 설정파일
+
+.DockFile은 텍스트 형식이며 파일명 또한 "Dockerfile"이며 확장자는 존재하지않는다
+
+Dockerfile에 작성되는 명령 옵션
+
+FROM - Docker Base Image (기반이 되는 이미지, <이미지이름> : <태그>)
+
+MAINTAINER - 메인테이너 정보 (작성자 정보)
+
+RUN - Shell Script 또는 명령 실행
+
+CMD - 컨테이너가 실행되었을 때 명령이 실행
+
+LABEL - 라벨 작성
+
+EXPOSE - 호스트와 연결할 포트 번호 설정
+
+ENV - 환경변수 설정
+
+ADD - 파일, 디렉터리추가
+
+COPY - 파일 복사
+
+ENTRYPOINT - 컨테이너가 시작되었을 때 스크립트 실행
+
+VOLUME - 볼륨 마운트
+
+USER - 명령 실행할 사용자 권한 지정
+
+WORKDIR - "RUN", "CMD", "ENTRYPOINT" 명령이 실행될 작업 디렉터리
+
+ARG - Dockerfile 내부변수
+
+ONBUILD - 다른 이미지의 Base Image로 쓰이게 될 경우 실행될 명령 수행
+
+SHELL - Default Shell 지정
+
+파일 패스워드 E6%5^&xRjL
+
+package.json 과 package-lock.json 의 관계
+
+우선 package.json파일이 제역할을 잘한다면 package-lock.json은 만들어질 이유가없다.
+
+package.json에서는 버전정보를 저장할때 version range를 사용한다.
+
+package.json에 명시되어있는 ~ 모듈들이라서 버전이 꼬일수도 있는 방면에
+
+package-lock.json에는 버전명이 정확히 명시되어있다.
+
+package-lock.json은 npm공식문서에따르면 package-lock.json이 node_modules트리 또는
+
+package.json이 수정될 때, 자동으로 생성이 된다고 나와있다.
+
+즉, npm install을 사용하였을때 package.json과 함께 생성된다.
+
+package-lock.json이 존재할때는 npm install의 동작방식이 조금 변하는데 
+
+둘이 함께있다면 package가 아닌 package-lock으로 node_modules를 생성한다.
