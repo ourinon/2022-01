@@ -1,0 +1,11 @@
+SFTP 와 FTP 
+
+FTP = File Transfer Protocal은 파일을 전송하거나 받을때 사용되는 방식이다.
+
+SFTP = Secure File Transfer Protocal은 FTP방식에서 보안이 강화된 방식이다.
+
+SFTP는 파일 전송 시 이 모든 정보를 암호화하여 통신을하게되고, 사용법은 일반 FTP
+사용과 동일하다.
+
+SFTP를 사용하기 위해서는 SFTP를 지원하는 서버와 클라이언트가 있어야한다.
+
