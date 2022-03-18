@@ -1,0 +1,23 @@
++++++++++++++++++++++++++++++++++++++++
+node.js로 돌리던 react에서 package.josn 에서 오류
+
+ [SEQUELIZE0004] DeprecationWarning: A boolean value was passed to options.operatorsAliases. 
+This is a no-op with v5 and should be removed
+
+원인.  "operatorsAliases": false 
+
+수정  "operatorsAliases": 0 or 1(true)
+
+해결.
++++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++
+npm start 시 발생한 오류
+
+Start script missing error when running npm start
+
+
+원인. 현재 실행한 디렉토리 위치 에러
+
+수정 ~ 정상적인 디렉토리
++++++++++++++++++++++++++++++++++++++++

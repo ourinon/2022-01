@@ -1,0 +1,21 @@
+Cocktail Cloud와 kubernetes의 관계
+
+Cocktail Cloud 는 kubernetes를 기반으로 UI나 기타 서비스등을 구축한것이다.
+
+%% Docker Desktop %%
+
+. Containers / Apps - Image로 만들었던 Container목록 및 Container의 현재 상태가 표시된다. 
+
+. Images - 현재 로컬 Repository에 Docker Container에서 사용할 Image를 다운로드한 목록이 표시된다.
+
+. Volumes - 
+
+. Dev Environments (?) -  
+
+
+
+SSH란?
+.Secure Shell Protocol의 약자이다. 이는 네트워크 프로토콜 중 하나로 컴퓨터와 컴퓨터가 인터넷과 같은 
+공유 네트워크를 통해서 서로 통신을 할 때 보안적으로 안전하게 통신을 하기 위해서 사용하는 프로토콜이다.
+
+대표적인 사용 예시는 1. 데이터전송 2. 원격제어 등이 있다.

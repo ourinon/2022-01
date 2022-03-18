@@ -1,0 +1,124 @@
+Docker 상태 확인
+
+- docker info
+// Docker가 정상적으로 설치되었다면 다음과같이 Client, Server정보등이 표시된다.
+
+Client:
+ Context:    default
+ Debug Mode: false
+ Plugins:
+  buildx: Docker Buildx (Docker Inc., v0.8.0)
+  compose: Docker Compose (Docker Inc., v2.3.3)
+  scan: Docker Scan (Docker Inc., v0.17.0)
+
+Server:
+ Containers: 1
+  Running: 1
+  Paused: 0
+  Stopped: 0
+ Images: 1
+ Server Version: 20.10.13
+ Storage Driver: overlay2
+  Backing Filesystem: extfs
+  Supports d_type: true
+  Native Overlay Diff: true
+  userxattr: false
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Cgroup Version: 1
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ Swarm: inactive
+ Runtimes: io.containerd.runtime.v1.linux runc io.containerd.runc.v2
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 2a1d4dbdb2a1030dc5b01e96fb110a9d9f150ecc
+ runc version: v1.0.3-0-gf46b6ba
+ init version: de40ad0
+ Security Options:
+  seccomp
+   Profile: default
+ Kernel Version: 5.10.16.3-microsoft-standard-WSL2
+ Operating System: Docker Desktop
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 16
+ Total Memory: 25.02GiB
+ Name: docker-desktop
+ ID: TCKP:WQX5:LH77:PGCQ:KY2Y:3O75:WYFS:ZBDH:L5W5:ZYO4:3MXE:SXO3
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ HTTP Proxy: http.docker.internal:3128
+ HTTPS Proxy: http.docker.internal:3128
+ No Proxy: hubproxy.docker.internal
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: false
+ Insecure Registries:
+  hubproxy.docker.internal:5000
+  127.0.0.0/8
+ Live Restore Enabled: false
+
+- docker image ls(= docker images)
+//현재 로컬에 다운로드 받은 Image 목록
+- docker rmi [image id]
+//id에 해당하는 image 삭제
+ 
+
+- docker container ls(= docker ps )
+//현재 실행중인 Docker Container 목록의 상태 및 정보
+- docker container ls -a 
+//삭제되지않고 종료된 Contaier가 포함된 목록
+- docker container rm [container id] 
+//id에 해당하는 container 목록 삭제
+ 
+
+-docker run [option] image[:tag] [command] [arg]
+
+-run: 대상 Image가 없다면 다운로드 후 실행 
+
+-image: 대상이 될 image의 이름
+
+-[:tag]: 컨테이너의 버전 또는 태그 이름 지정 (default: latest)
+
+[option]
+-d: 컨테이너를 백그라운드에서 실행
+-it: -i 와 -t 명령어를 같이 사용, 컨테이너가 실행 후 터미널 입력을 위해 사용
+--name: 컨테이너를 식별할 이름 지정, 중복될 수 없다.
+-e: Container의 환경변수 설정, Dockefile 의 ENV 설정 덮어써짐.
+-p: 포트포워딩 (-p 호스트포트:컨테이너포트)
+-v: 호스트와 Container 간의 볼륨 마운트
+--rm: 프로세스가 종료되면 컨테이너의 리소스까지 모두 제거, 일회성으로 실행할때 주로 사용
+
+Docker 이미지 빌드
+
+- docker build -t [IMAGE_NAME]:VERSION
+
+Docker 이미지 확인
+
+- docker images
+
+Docker 이미지 배포
+
+- docker hub 회원가입및 레포지토리 생성
+
+- docker login 을통해서 docker hub에 로그인
+
+- docker tag [IMAGE_NAME]:VERSION [YOUR_ACCOUNT]/[IMAGE_NAME]:VERSION
+
+- docker push [YOUR_ACCOUNT]/[IMAGE_NAME]:VERSION
+
+Docekr Container 상황 확인
+
+- docker ps
+
+
+Docker Container 접속방법
+
+- docker exec -if [CONTAINER ID] /bin/bash
+
+Docker 포트 파인딩 방법
+docker run -i -t --name [SERVER_NAME] -p [HOST_PORT]:[CONTAINER_PORT] 
+
