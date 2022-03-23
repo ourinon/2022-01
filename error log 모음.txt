@@ -21,3 +21,13 @@ Start script missing error when running npm start
 
 수정 ~ 정상적인 디렉토리
 +++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++
+
+freeFTPd에서  Apply & Save 시 Could not write configuration 
+
+원인 - 권한 없음
+
+수정 - 관리자권한으로 접근
+
++++++++++++++++++++++++++++++++++++++++

@@ -56,3 +56,4 @@ start할때는 기존에쓰던 port확인후 already가 되어있다면 해당 p
 
 프로젝트에서 업로드 -> sftp에 업로드됨. -> remote컴퓨터에서 다운로드 클릭 -> sftp 서버 접속후 해당 json 파일 다운로드
  
+freeFTPd  Apply & Save 시 Could not write configuration 에러 해결
