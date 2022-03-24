@@ -31,3 +31,20 @@ freeFTPd에서  Apply & Save 시 Could not write configuration
 수정 - 관리자권한으로 접근
 
 +++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++
+
+freeFTPd 에서 SFTP 서버 구축후 cmd 환경에서 ssh 접속 시 에러
+
+Hello, I'm freeFTPd 1.0shell request failed on channel 0
+
+원인 - ssh 접속이아니라 sftp로 접속했어야함
+
+수정 - 
+ssh ~ X
+sftp ~ O
+
+또한 .txt이아니라 폴더 째로 이동해야함(Filezilla)
+
+. chmod 777 [path] -) 777은  실행, 쓰기, 읽기 다됨
++++++++++++++++++++++++++++++++++++++++
