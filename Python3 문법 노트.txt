@@ -134,3 +134,63 @@ ex) array [1, 2, 3, 4, 5] + 5 = [6, 7, 8, 9, 10]
 Array는 안에 요소 값 자체에 영향을 끼치고
 
 list는 안에 요소 갯수 자체에 영향을 끼친다.
+
+range()
+
+range(10)을 list 로 나타내면
+
+list[1, ~ 9]
+
+즉, range (start, stop) 이다.
+
+2022 - 숫자 문자열과 영단어
+
+def solution(s):
+
+    answer = s
+    dict1 = {"zero" : '0',"one" : '1', "two" : '2', "three": '3', "four": '4', "five": '5',
+           "six" : '6', "seven": '7', "eight": '8', "nine": '9'}
+    
+    
+    for key, value in dict1.items():
+        answer = s.replace(key, value)
+    
+
+    return int(answer)
+
+위에서 answer = s 이 필요한 이유는 무엇인가?
+
+= str은 immutable 이기때문에 원본은 변경하지 않고 새로운 문자열 객체를 리턴하기때문이다.
+
+즉 
+
+string = 'abcdfe2a354a32a'
+string = string.replace('a', 'A')
+print(string)  #Abcdfe2A354A32A
+
+string = 'abcd'
+string.replace('b', 'B')
+print(string) #abcd 의 차이이다.
+
+call by value와 call by reference
+
+전자는 지역 단위, 후자는 전역 단위이다.
+
+2022 - k번째
+
+IndexError: list index out of range 에러는 list안에 index 범위를 초과하여 나는 에러이다.
+
+def solution(array, commands):
+    
+    num = len(commands)
+    end2 = []
+    for i in range(0, num):
+        result = sorted(array[commands[i][0] - 1 : commands[i][1]])
+        end = result[commands[i][2] - 1]    
+        end2.append(end)
+        
+    
+    return end2
+
+
+
