@@ -1,0 +1,7 @@
+C# Json
+
+DeserializeObject 와 SerializeObject
+
+json 문자열을 클래스로 파싱 하려면 JsonConvert객체의 DeserializeObject 함수를 사용한다.
+
+클래스를 json 문자열로 변환할때는 JsonConvert객체의 SerializeObject 함수를 사용한다.

@@ -60,6 +60,14 @@ c# static이 아닌 필드 메서드 또는 속성 개체 참조가 필요합니
 수정 - static을 지움
 
 
++++++++++++++++++++++++++++++++++++++++
 
++++++++++++++++++++++++++++++++++++++++
+
+SerializationException 에러
+
+원인 - json 파일 변경시 DeserializeObject, SerializeObject를 할때 일어나는 에러
+
+수정 - DeserializeObject 하기전 SerialzeObject 처리
 
 +++++++++++++++++++++++++++++++++++++++

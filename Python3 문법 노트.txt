@@ -193,4 +193,20 @@ def solution(array, commands):
     return end2
 
 
+print(" \" ") 이 뜻은 " 을 출력한다는 뜻이다.
 
+
+map(), input() 사용 
+
+a, b = map(int, input().split())
+
+map 예제
+
+. map(function, iterable) 형식
+
+
+A, B, C = map(int, input().split())
+print(int((A+B)%C))
+print(int(((A%C) + (B%C))%C))
+print(int((A×B)%C))
+print(int(((A%C) × (B%C))%C))
