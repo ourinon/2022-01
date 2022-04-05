@@ -1,0 +1,72 @@
+BACKJOON 사용언어 : python
+
+문제 이름 : 
+
+문제 번호 : 10926
+
+답 -
+Wow = input()
+print(Wow+"??!")
+
+문제 이름 : A+B-3
+
+문제 번호 : 10950 
+
+답 -
+Test = int(input())
+while Test > 0:
+    A, B = map(int, input().split())
+    print(A+B)
+    Test -= 1
+
+문제 이름 : 구구단
+
+문제 번호 : 2739
+
+답 -
+num = int(input())
+for a in [1, 2, 3, 4, 5, 6, 7, 8, 9]:
+    print(num, "*", a, "=", a * num)
+
+문제 이름 : 주사위세개
+
+문제 번호 : 2480
+
+답 -
+A, B, C = map(int, input().split())
+if A == B and B == C :
+    print(10000 + (A * 1000))
+elif A == B:
+    print(1000 + (A * 100))
+elif B == C:
+    print(1000 + (B * 100))
+elif A == C:
+    print(1000 + (A * 100))    
+elif A > B and A > C:
+    print(A * 100)
+elif B > C:
+    print(B * 100)
+elif C > B:
+    print(C * 100)
+
+문제 이름 : 오븐시계
+
+문제 번호 : 2525
+
+답 -
+H, M = map(int, input().split())
+Time = int(input())
+if Time >= 60:
+    cookTimeH = Time // 60
+    cookTimeM = Time % 60
+else:
+    cookTimeH = 0
+    cookTimeM = Time
+endH = H + cookTimeH 
+endM = M + cookTimeM
+if endM >= 60:
+    endH += endM // 60
+    endM -= (endM // 60) * 60
+if endH >= 24:
+    endH = endH % 24
+print(endH, endM)
