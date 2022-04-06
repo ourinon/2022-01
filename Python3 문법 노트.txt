@@ -210,3 +210,9 @@ print(int((A+B)%C))
 print(int(((A%C) + (B%C))%C))
 print(int((A×B)%C))
 print(int(((A%C) × (B%C))%C))
+
+rstrip("지정 문자") 이란?
+문자열끝에 지정된 값을 삭제 후 문자열 반환
+
+sys.stdin.readline() 이란?
+한줄 단위로 입력받으며 개행문자가 같이 입력받아진다.

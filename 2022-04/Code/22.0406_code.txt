@@ -1,0 +1,72 @@
+BACKJOON 사용언어 : python
+
+문제 이름 : A+B - 4
+
+문제 번호 : 10951
+
+답 -
+
+while True:
+    try:
+        A, B = map(int, input().split())
+        print(A+B)
+    except:
+        break;
+
+문제 이름 : A+B - 5
+
+문제 번호 : 10952
+
+답 -
+
+while True:
+    A, B = map(int, input().split())
+    if A + B == 0:
+        break;
+    else:
+        print(A + B)
+
+문제 이름 : 별찍기 - 2
+
+문제 번호 : 2439
+
+답 -
+star = int(input())
+space = ""
+a = '*'
+while star != 0:
+    s = star - 1
+    star -= 1
+    while s != 0:
+        s -= 1
+        space += " "
+    print(space + a)
+    a += "*"
+    space = ""
+
+문제 이름 : 별찍기 - 1
+
+문제 번호 : 2438 
+
+답 -
+
+star = int(input())
+a = '*'
+while star != 0:
+    star -= 1
+    print(a)
+    a += '*'
+
+문제 이름 : A+B - 8
+
+문제 번호 : 11022
+
+답 -
+
+Num = int(input())
+test = 1
+while Num != 0:
+    Num -= 1
+    A, B = map(int, input().split())
+    print("Case #{0}: {1} + {2} =".format(test, A, B), (A+B))
+    test += 1
