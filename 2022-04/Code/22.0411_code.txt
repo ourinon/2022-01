@@ -1,0 +1,24 @@
+React (Async와 Await), Promise 비교
+
+Promise 예시 
+
+const users = () => {
+    getData()
+        .then(users => {
+            console.log(users);
+            return users;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
+Async, Await 예시
+
+const users = async() => {
+    console.log(await getData());
+    return await getData();
+}
+
+
+

@@ -71,3 +71,15 @@ SerializationException 에러
 수정 - DeserializeObject 하기전 SerialzeObject 처리
 
 +++++++++++++++++++++++++++++++++++++++
+
++++++++++++++++++++++++++++++++++++++++
+
+server port 정리중 mysql port 3306 강제 종료후 mysql 접속 오류
+
+원인 - 실행중이던 mysql port 종료
+
+수정 - 윈도우 - 서비스 들어가서 mysql80시작 버튼 누르기
+
+해결- netstat -ano 로 port 구성 확인에서 3306 mysql port 정상 작동 확인
+
++++++++++++++++++++++++++++++++++++++++
