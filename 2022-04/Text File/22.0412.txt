@@ -1,0 +1,9 @@
+Real Report 사용 
+
+라이센스 발급후 realreport.latest.zip 파일 다운 후 압축 해제
+
+highcharts 디렉토리 - RealReport 차트 출력을 위한 HighCharts 라이브러리를 포함 한다.
+pdffonts 디렉토리 - PDF 형식 파일 내보내기에 사용되는 PDF 폰트 샘플을 포함하고 있다.
+pdfkit.js - PDF 내보내기를 위한 라이브러리 파일이다.
+realreport 디렉토리 - RealReport 라이브러리 및 이미지 파일을 포함한다.
+

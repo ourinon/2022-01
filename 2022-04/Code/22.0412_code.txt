@@ -1,0 +1,31 @@
+Real Report 관련 코드 
+
+script tag (realreport.js)
+
+<script src='~/realreport.js'></script>
+
+style 파일 (realreport.css)
+
+<link href='~/realreport.css' rel='stylesheet'/>
+
+라이선스 파일 (realreport-lic.js) 
+
+<script src='~/realreport-lic.js'></script>
+이 코드는 script tag인 realreport.js 부분보다 먼저 와야한다.
+
+
+차트 관련 파일 (highcharts)
+
+<link href='js/highcharts/highcharts.css' rel='stylesheet' />
+<script src="js/highcharts/highcharts.js"></script>
+<script src="js/highcharts/highcharts-more.js"></script>
+
+PDF 내보내기 기능 (pdfkit)
+
+<script src="~/pdfkit.js"></script>
+
+컨테이너 (reportContainer)
+
+<div id="reportContainer"></div>
+
+
