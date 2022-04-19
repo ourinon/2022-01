@@ -1,0 +1,126 @@
+다음과 같은 json 데이터를 key, value 를 하나씩 Console 에 찍을때, 
+
+const data = {
+    code: 42,
+    items: [{
+        id: 1,
+        name: 'foo'
+    }, {
+        id: 2,
+        name: 'bar'
+    }]
+} 의 json 형식 데이터를 하나씩 찍어본다.
+
+console.log(Object.keys(data)[0])
+console.log(data.code)
+console.log(Object.keys(data)[1])
+console.log(data.items)
+console.log("----------------------")
+console.log(Object.keys(data.items[0])[0])
+console.log(data.items[0].id)
+console.log(Object.keys(data.items[0])[1])
+console.log(data.items[0].name)
+console.log(Object.keys(data.items[1])[0])
+console.log(data.items[1].id)
+console.log(Object.keys(data.items[1])[1])
+console.log(data.items[1].name)
+
+의 결과 값
+
+
+"code"
+42
+"items"
+[[object Object] {
+  id: 1,
+  name: "foo"
+}, [object Object] {
+  id: 2,
+  name: "bar"
+}]
+"----------------------"
+"id"
+1
+"name"
+"foo"
+"id"
+2
+"name"
+"bar"
+
+핵심은 key : value 같은 객체 형일 경우 점 표기법으로 접근하며 배열형태일 경우 대괄호 표기법으로 접근한다.
+
+key 추출 하는 방법은 Object.keys() 메소드를 쓰는것이다.
+
+
+BACKJOON 사용언어 : python
+
+
+문제 이름 : 단어 공부
+
+문제 번호 : 1157
+
+문제 : 
+
+답 - 알파벳 대소문자로 된 단어가 주어지면, 이 단어에서 가장 많이 사용된 알파벳이 무엇인지 알아내는 프로그램을 작성하시오. 단, 대문자와 소문자를 구분하지 않는다.
+
+Alpha = input()
+Alpha = Alpha.upper()
+ListAlpha = list(Alpha)
+res = ""
+resNum = 0
+lastNum = 0
+for a in range(65, 91):    
+    for i in ListAlpha:
+        if chr(a) == i:
+            resNum += 1
+    if resNum > lastNum:
+        res = chr(a)
+        lastNum = resNum
+    elif resNum == lastNum:
+        res = '?'     
+    
+    resNum = 0
+print(res)
+
+문제 이름 : 단어의 개수
+
+문제 번호 : 1152
+
+문제 : 영어 대소문자와 공백으로 이루어진 문자열이 주어진다. 이 문자열에는 몇 개의 단어가 있을까? 이를 구하는 프로그램을 작성하시오. 단, 한 단어가 여러 번 등장하면 등장한 횟수만큼 모두 세어야 한다.
+
+답 - 
+
+test = input()
+s = 0
+test = test.rstrip()
+test = test.lstrip()
+for i in test:    
+    if i == ' ':
+        s += 1
+if test == '':
+    print(0)
+else:
+    print(s + 1)
+
+
+문제 이름 : 2908
+
+문제 번호 : 상수
+
+문제 : 상근이의 동생 상수는 수학을 정말 못한다. 상수는 숫자를 읽는데 문제가 있다. 이렇게 수학을 못하는 상수를 위해서 상근이는 수의 크기를 비교하는 문제를 내주었다. 상근이는 세 자리 수 두 개를 칠판에 써주었다. 그 다음에 크기가 큰 수를 말해보라고 했다.
+
+상수는 수를 다른 사람과 다르게 거꾸로 읽는다. 예를 들어, 734와 893을 칠판에 적었다면, 상수는 이 수를 437과 398로 읽는다. 따라서, 상수는 두 수중 큰 수인 437을 큰 수라고 말할 것이다.
+
+두 수가 주어졌을 때, 상수의 대답을 출력하는 프로그램을 작성하시오.
+
+답 -
+
+numList = list(input().split())
+num1 = int(''.join(list(reversed(numList[0]))))
+num2 = int(''.join(list(reversed(numList[1]))))
+if num1 > num2:
+    print(num1)
+else:
+    print(num2)
+

@@ -1,0 +1,145 @@
+JavaScript 에서 
+
+배열의 형태를 띠는 데이터에 접근할땐 키가 숫자여야하지만, 객체의 형태를 띠는 데이터는 모든 문자열을 키로 사용할 수있으며
+키-값의 쌍을 '속성' 이라고 한다.
+
+그리고 보통 객체에 접근할때는 점 표기법을 사용하며 배열의 형식으로 접근할땐 대괄호 표기법으로 접근한다.
+
+undefunded를 얻을 때 대부분 객체/배열에는 해당 이름의 속성이 없다.
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+const test = {
+  "report": {
+    "name": "reportRoot",
+    "paperSize": "A4",
+    "paperWidth": "210mm",
+    "paperHeight": "297mm",
+    "marginLeft": "12mm",
+    "marginRight": "12mm",
+    "marginTop": "15mm",
+    "marginBottom": "15mm"
+  },
+  "page": {
+    "name": "reportPage",
+    "pageHeader": {
+      "name": "pageHeader",
+      "items": [
+        {
+          "type": "rbox",
+          "name": "",
+          "right": 0,
+          "itemGap": 4,
+          "items": [
+            {
+              "type": "text",
+              "name": "",
+              "text": "Date:"
+            },
+            {
+              "type": "text",
+              "value": "${date}",
+              "name": "",
+              "text": "Text"
+            }
+          ]
+        }
+      ]
+    },
+    "reportHeader": {
+      "name": "reportHeader",
+      "items": [
+        {
+          "type": "text",
+          "text": "Report Header",
+          "styles": {
+            "fontSize": "30px",
+            "fontWeight": "bold",
+            "__tag_": {}
+          }
+        }
+      ]
+    },
+    "reportFooter": {
+      "name": "reportFooter"
+    },
+    "pageFooter": {
+      "name": "pageFooter",
+      "items": [
+        {
+          "type": "rbox",
+          "name": "",
+          "right": 0,
+          "itemGap": 4,
+          "items": [
+            {
+              "type": "text",
+              "value": "${page}",
+              "name": "",
+              "text": "Text"
+            },
+            {
+              "type": "text",
+              "name": "",
+              "text": "/",
+              "styles": {
+                "paddingLeft": "3px",
+                "paddingRight": "3px",
+                "__tag_": {}
+              }
+            },
+            {
+              "type": "text",
+              "value": "${pages}",
+              "name": "",
+              "text": "Text"
+            }
+          ]
+        }
+      ]
+    },
+    "body": {
+      "name": "pageBody"
+    }
+  },
+  "assets": {
+    "/": []
+  },
+  "data": {},
+  "guid": "94d501cf-dd41-4868-94d5-eb9eec812a5d"
+}
+
+test로 json형식 데이터에서 출력할 내용 해보자 10개.
+
+1. 12mm  == console.log(test.report.marginLeft)
+
+2. page == console.log(Object.keys(test)[1])
+
+3. styles 전체 == console.log(test.page.reportHeader.items[0].styles)
+
+4. 30px == console.log(test.page.reportHeader.items[0].styles.fontSize)
+
+5. "${page}" == console.log(test.page.pageFooter.items[0].items[0].value)
+
+6. "pageBody" == console.log(test.page.body.name)
+
+7. "itemGap" == console.log(Object.keys(test.page.pageHeader.items[0])[3]) or console.log(Object.keys(test.page.pageFooter.items[0])[3])
+
+8.  "__tag_" == console.log(Object.keys(test.page.pageFooter.items[0].items[1].styles)[2])
+
+9. "${page}" 에 있는 "value" == console.log(Object.keys(test.page.pageFooter.items[0].items[0])[1])
+
+10. "94d501cf-dd41-4868-94d5-eb9eec812a5d" == console.log(test.guid)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+AJAX
+
+자바스크립트를 이용하여 비동기 식으로 서버와 통신을 합니다. 비동기 통신이기 때문에 서버에 요청이 가더라도,
+화면의 깜빡 거림이나 화면이 이동 된다는 느낌을 주지 않으며 상당히 자연스럽고 빠르게 클라이언트의 화면을 변화 
+시켜줍니다. 최근에는 XML형식이 아닌 JSON 형식을 더 많이 사용하고 있다.
+
+= RealReport에 데이터를 넣기위해 웹 클라이언트에서 AJAX를 통해 새로운 json 데이터를 받아서 처리해준다.
+
+
+
