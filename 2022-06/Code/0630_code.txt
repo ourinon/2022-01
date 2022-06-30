@@ -1,0 +1,28 @@
+function print() {
+    var printWindow = window.open('./popup.html', 'printWindow', 'width=800px,height=1024px'); // 프린트할 새 윈도우 열기
+    if (printWindow) {
+        printWindow.addEventListener('DOMContentLoaded', function () {
+            var container = printWindow.document.getElementById('realreport'); // realreport id를 가지고있는 div 태그 가져오기
+            container.innerHTML = viewer.getHtml(); // html 로 변환
+            var pages = printWindow.document.getElementsByClassName('rr-print-page'); // rr-print-page class에 속한 태그 가져오기
+            var landscapePages = []; 빈배열 선언 (가로, 세로 페이지 를 넣어줄예정)
+            for (let i = 0; i < pages.length; i++) {
+                var w = Number(printWindow.getComputedStyle(pages[i]).getPropertyValue('width').replace('px', '')); 해당 페이지 가로값 가져오기
+                var h = Number(printWindow.getComputedStyle(pages[i]).getPropertyValue('height').replace('px', '')); 해당 페이지 세로값 가져오기
+                if (w > h) { // 가로페이지인지 세로페이지인지 구분할 목적
+                    landscapePages.push(pages[i]);
+                    pages[i].style.transformOrigin = '0 100% 0';
+                    pages[i].style.transform = `rotate(90deg) translate(-${h}px)`; 가로 페이지 print 할때 90도 회전
+                }
+            }
+            printWindow.print();
+        });
+        printWindow.document.body.addEventListener('onafterprint', function () {
+            printWindow.close();
+        });
+    }
+}
+
+addEventListener ? 
+
+- 특정 DOM 요소에 이벤트 리스너를 등록할때 사용한다.
