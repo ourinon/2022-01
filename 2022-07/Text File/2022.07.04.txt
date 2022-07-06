@@ -1,0 +1,34 @@
+객체지향적이란 어떤 의미 인가?
+
+다섯가지의 특징을 가지는 구조이다.
+
+다형성
+
+추상화
+
+캡슐화
+
+상속
+
+class PolymorphismExam {
+    public static void main(String[] args) {
+        Person student = new Student();
+        student.show();
+    }
+}
+class Person {
+    void show() {
+        System.out.println("사람");
+    }
+}
+class Student extends Person {
+    void show() {
+        System.out.println("학생");
+    }
+}
+
+동적바인딩- 런타임 시점에서 객체타입을 기준으로 실행될 함수를 호출하는것이다...
+
+즉, 다형성이 적용되었을때 Student 객체는 컴파일 시점과 런타임 시점에 참조하는 함수가 다름을 의미한다.
+
+서블릿컨테이너는 동적 데이터를 사용할수있게 한다는것은 어떤 의미인가?

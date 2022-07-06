@@ -1,0 +1,25 @@
+일반 spring을 실행시킬때 처음 url 은 해당 프로젝트의 properties -> Web Project Settings에 들어가서
+Context root 에서 확인 및 수정 할 수 있다.
+
+
+Twitch 공식 홈페이지 Chat & Chatbots 해석
+
+Twitch provides an Internet Relay Chat (IRC) interface that lets chatbots connect to Twitch chat rooms using a
+WebSocket or TCP connection. Once connected, bots can send and receive chat messages. For example, bots
+can provide simple reminders like get up and move or hydrate, or they can perform Twitch actions like banning a
+user, or they can react to user input.
+
+- 트위치는 인터넷 연결 챗 (IRC)인터페이스를 제공한다. IRC에서 채팅봇이 TCP, 웹소켓을 사용하여 채팅방에연결한다.
+연결한후에 채팅 봇은 채팅 메세지를 지원하며 보낼수있다. 예를들어서 채팅봇이 일어나라, 수화 등 간단한 것을 제공하고
+밴된 사용자의 행동을 보여줄수있다. 또한 사용자의 입력에따라 반응도 보여준다.
+
+번역 - Twitch는 챗봇이 WebSocket 또는 TCP 연결을 사용하여 Twitch 대화방에 연결할 수 있도록 하는 IRC(Internet Relay
+Chat) 인터페이스를 제공합니다. 연결되면 봇은 채팅 메시지를 보내고 받을 수 있습니다. 예를 들어 봇은 일어나거
+나 움직이거나 수분 섭취와 같은 간단한 알림을 제공 하거나 사용자 금지와 같은 Twitch 작업을 수행하거나 사용자
+입력에 반응할 수 있습니다.
+
+For a simple example to get you started quickly, see Getting Started.
+
+- 빠르게 시작할수있는 간단한예는 Getting Started 를 봐라.
+
+번역 - 빠르게 시작할 수 있는 간단한 예는 시작하기 를 참조 하십시오 .
