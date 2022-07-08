@@ -1,0 +1,232 @@
+C# Partial 클래스 란?
+
+- 클래스를 여러 파일에 정의할 수 있다.
+
+- 클래스의 내용을 다른 파일로 분할할 수있지만 논리적으로는 하나이다.
+왜냐하면 응용프로그램이 컴파일될 때 분할된 파일이 결합되기때문.
+
+즉, 클래스를 여러 파일로 분할 하려면 partial 키워드를 사용하여 Partial Class로 정의한다.
+
+예시)
+
+[Person.cs 클래스파일]
+partial class Person
+{
+  // 필드
+  private string _name;
+  private int _age;
+
+  // 프로퍼티
+  public string Name
+  {
+    get { return _name; }
+    set { _name = value; }
+  }
+
+  public int Age
+  {
+    get { return _age; }
+    set { _age = value; }
+  }
+
+  // 메서드
+  public void DisplayPersonInfo()
+  {
+    Console.WriteLine("Name: " + _name + " / Age: " + _age);
+  }
+}
+
+[Program.cs 클래스 파일]
+
+class Program
+{
+  static void Main(string[] args)
+  {
+    Person person = new Person();
+
+    person.Name = "마이콜";
+    person.Age = 20;
+
+    person.DisplayPersonInfo();
+  }
+}
+
+실행결과 = Name: 마이콜 / Age: 20
+
+위의 Person.cs 를 각각 필드, 프로퍼티, 메서드 세가지로 재분류하여 클래스파일을 생성할수있다.
+
+[FieldPerson.cs 클래스파일]
+partial class Person
+{
+    // 필드
+    private string _name;
+    private int _age;
+}
+
+[PartialPerson.cs 클래스파일]
+partial class Person
+{
+  // 프로퍼티
+  public string Name
+  {
+    get { return _name; }
+    set { _name = value; }
+  }
+  
+  public int Age
+  {
+    get { return _age; }
+    set { _age = value; }
+  }
+}
+
+[PropertyPerson.cs 클래스파일]
+partial class Person
+{
+  // 메서드
+  public void DisplayPersonInfo()
+  {
+    Console.WriteLine("Name: " + _name + " / Age: " + _age);
+  }
+}
+
+그리고 Program.cs 클래스파일에서 동일한 결과가 나오는것을 확인할 수 있다.
+
+주의)
+
+- 분할된 파일은 모두 partial 키워드를 사용해서 정의해야한다.
+
+- 분할된 파일들은 모두 동일한 접근 제어자를 사용해야한다.
+
+- C#은 다중상속을 지원하지 않기 때문에 partial 클래스는 모두 동일한 부모 클래스를 사용해야한다.
+
+- 하지만 Partial 별로 인터페이스를 구현할 수 있다.
+
+결론 = Partial 로 클래스 파일을 만들어서 작업한다면 동시에 개발을 진행 할 수 있다.
+
+C# 에서 const와 readonly의 차이점은, 각각 컴파일 타입의 상수, 런타임 상수라는것이다.
+
+const
+
+- 컴파일 타입의 상수이다. 컴파일 시 const 변수의 값을 가져온다.
+
+- 내장자료형(정수형, 실수형, Enum, String)에 대해서만 사용 할 수 있다.
+
+- 변수 선언과 동시에 값을 할당 해야한다.
+
+- 메모리 할당 위치는 StackMemory 이며 static으로 선언하면 HeapMemory에 저장 가능하다.
+
+readonly
+
+- 런타임 상수이다.
+
+- 모든 자료형에 사용 할 수있으며, 생성과 동시에 초기화 할 필요는 없다.
+
+- 생성자 단게에서 단 한번 할당을 통해 초기화 할 수있다.
+
+- 메모리 할당 위치는 HeapMemory이다.
+
+C# 에서 this의미
+
+- this 키워드는 객체가 자신을 지칭할 때 사용하는 키워드이다.
+
+예를들어 클래스 내부에서 필드명과, 메서드의 매개 변수의 이름이 동일하다면,
+this 키워드로 모호성을 제거할 수 있다.
+왜냐하면 this가 붙은 변수는 클래스 자기 자신의 필드이며 그외에는 매개변수 이기때문이다.
+
+- this() 생성자는 같은 클래스의 다른 생성자를 호출하고 싶을때 사용
+
+C# 에서 out, ref 키워드
+
+- ref와 out 키워드는 메서드 또는 함수 내에서 인수를 전달하는 데 사용된다. 두 키워드 모두 인수 혹은 매개 변수가 참조로
+전달되었음을 의미한다.
+
+- ref와 our 키워드의 공통점은 런타임에 따라 다르게 처리되고 컴파일 시간에 동일하게 처리된다.
+
+- 속성은 변수가 아니여서 ref 또는 out 매개변수로 전달할 수 없다.
+
+런타임이란 쉽게말해 프로그램이 실행되는 시간이다.
+
+컴파일이란 쉽게말해 프로그램을 생성하는 과정이다.
+
+ref 키워드
+
+- ref 키워드는 인수를 참조로 전달하는 데 사용된다. 즉, 해당 매개 변수의 값이 메서드에서 변경되면 호출하는 메서드에 반영된다.
+
+- ref 키워드를 사용하여 전달 된 인수는 호출된 메서드에 전달되기 전에 호출 메서드에게 초기화되어야 한다.
+
+특징 -	매개 변수가 ref로 전달되기 전에 초기화해야 한다.
+
+-	호출 메서드로 돌아가기 전에매개 변수 값을 초기화할 필요는 없다.
+
+-	ref 매개 변수를 통한 값 전달은 호출된 메서드가 전달된 매개 변수의 값을 변경해야 할 때 유용하다.
+
+-	ref를 사용하면 데이터를 양방향으로 전달할 수 있다.	
+
+예시)
+
+static void SetValueRef(ref string str)
+{
+  str = "refString";
+  Console.WriteLine("SetValueRef 메소드에서 값 변경: {0}", str);
+}
+     
+static void Main(string[] args)
+{
+  string str1 = "initString";
+  Console.WriteLine("SetValueRef 메소드 호출 전: {0}", str1);
+  SetValueRef(ref str1);
+  Console.WriteLine("SetValueRef 메소드 호출 후: {0}\n", str1);
+}
+
+결과 :
+
+initString
+refString
+refString
+
+out 키워드
+
+- out 키워드는 ref 키워드와 같은 인수를 전달하는데도 사용되지만 값을 할당하지 않고도 인수를 전달할 수 있다.
+
+- out 키워드를 사용하여 전달 된 인수는 호출 메서드로 돌아가기 전에 호출된 메서드에게 초기화되어야 한다.
+
+특징 -	매개 변수가 전달되기 전에 초기화할 필요가 없다.
+
+-	호출 메서드로 돌아가기 전에 매개 변수 값을 초기화해야한다.
+
+-	out 매개 변수를 통한 매개 변수 선언은 메서드가 여러 값을 리턴할 때 유용하다.
+
+-	out을 사용할 때 데이터는 단방향 방식으로만 전달된다.
+
+주의) ref와 out 키워드 메서드 오버로딩, 
+
+메서드 오버로딩을 할때 ref 와 out 키워드를 사용하여 매개변수를 사용하면 오버로딩을 할수없다.
+
+결론 = out은 호출된 메서드에서 호출자 메서드로 단방향 데이터 전달,
+ref는 서로 양방향 데이터 전달이 가능하다.
+
+C# 에서 문자열 앞 @ 뜻
+
+1. 문자열 앞에 사용하여 해당 문자열 안의 Escape 문자를 무시하고 문자 그대로 인식 하도록 한다.
+(보통 파일 패스를 지정할 때 많이 사용한다.)
+
+2. 한 문자열 변수에 여러 줄의 문자열을 지정하는 경우 @심벌을 사용한다.
+
+string code = @"
+public string ReadFile(string filename)
+{
+    if (!string.IsNullOrEmpty(filename))
+    {
+        return File.ReadAllText(filename);
+    }
+    return string.Empty;
+}
+";
+
+Console.WriteLine(code);
+
+3. C# 키워드 앞에 붙여 일반 변수명으로 사용할 때 유용하게 사용한다.
+
+메모리.
+
