@@ -1,0 +1,170 @@
+이클립스 해당 함수 정의로 이동 단축키 : F3
+
+비주얼 스튜디오 해당 함수 정의로 이동 단축키 :  F12
+
+어노테이션 이란 ?
+
+- Annotation의 역할은 사전상으로 주석이라는 의미이지만 자바 내에서는 소스코드에 추가하여 사용하는 메타데이터의 일종이다.
+. Annotation(어노테이션)이란 클래스와 메서드에 추가하여 다양한 기능을 부여하는 역할을 한다. 이를 활용하여 spring 내부에서는
+해당 클래스가 어떤 역할인지 정하거나, Bean을 직접 주입하기도 하고 자동으로 getter 나 setter를 생성하기도한다. 특별한 의미를
+부여하거나 기능을 부여하는 등 다양한 역할을 수행할 수 있다.
+
+스프링 빈 이란?
+
+- Spring Ioc 컨테이너가 관리하는 자바 객체를 빈(Bean) 이라고 부른다. 
+
+0. 최초 시작하는 HomeController 에서 
+
+1. @SpringBootApplication 이란 무엇인가?
+- 해당 어노테이션은 auto-configuration을 담당한다. 즉, 해당 어노테이션으로 인해 스프링 부트의
+자동 설정, 스프링 Bean 읽기와 생성이 모두 자동으로 설정된다.
+
+해당 어노테이션이 있는 위치부터 시작해 설정을 읽어가기 때문에 이 어노테이션을 포함한 클래스는
+항상 프로젝트의 최상단에 위치해야만 한다.
+
+그리고 이 어노테이션 안에는 3가지의 어노테이션을 포함하고있다.
+
+- @EnableAutoConfiguration - 설정 자동 등록하기
+. spring boot의 핵심이며 미리 정의되어 있는 Bean들을 가져와서 등록해준다.
+미리 정의되어 있는 Bean들은 spring-boot-autoconfigure -> META-INF -> spring.factories에 있다.
+
+- @ComponentScan - 빈 등록하기
+. 스프링에서 관리하는 POJO를 빈(Bean) 이라고한다.
+. 해당 어노테이션은 현재 패키지 이하(최상단에 존재해야하는 이유)에서 다음과 같은 어노테이션이 붙어 있는 클래스들을
+찾아서 빈으로 등록하는 역할을 한다.
+
+@Component, @Configuration, @Repository, @Service, @Controller, @RestController 
+
+- @SpringBootConfiguration - Configuration의 용도
+. @Configuration은 spring에 빈 팩토리를 위한 오브젝트를 설정을 담당하는 클래스라고 인식 할 수 있도록 알려준다.
+. 그래서 해당 어노테이션은 @Configuration의 대안이라고 할 수 있다.
+@Configuration과 거의 비슷한 일을 하지만 가장 큰 차이점은 @SpringBootConfiguration을 사용하면 구성을 자동으로
+찾을 수 있다는 점이다.
+
+2. @EnableRedisHttpSession 이란 무엇인가?
+. Spring에서 Global session 전략을 사용할 때 일반적으로 redis을 사용하는데, 이때 사용되는 어노테이션이다.
+
+3. 메인 함수 파라미터 String[] args 란 어떤 의미로 쓰이는가? 
+. 자바의 메인 메소드는 JVM에 의해 호출되어야 하므로 public 속성을 가지고있으며 객체 생성전 사용 가능한 상태로
+JVM에 의해 호출되어야 하므로 static 속성역시 가지고 선언되어야한다.
+
+. 해당 인자의 역할은 주어진 모든 인자를 문자열로 처리하여 main()메소드에 전달된 형태이며
+명령행 인자는 main 메소드에서 option1,option2,option3,··· 등등으로 전달된다.
+
+4. 컴퓨터 메모리 구조 및 라이프 사이클 무조건 숙지할때까지 암기및 복기 하기
+
+코드 영역, 데이터 영역, 힙 영역, 스택 영역
+
+코드영역 - 직접 작성한 소스코드가 들어 가는 부분이다. 실행할 프로그램의 코드가 저장되는 영역이므로 텍스트 영역 이라고도한다.
+
+데이터 영역 - 전역변수와 static 변수가 할당되는 영역이다. 크기는 컴파일 타임에 결정된다.
+
+힙 영역 - 프로그래머가 직접 할당/해제 하는 메모리 공간이다. 이공간에 메모리 할당하는 것을 동적 할당 이라고한다.
+크기느 런타임에 결정된다
+
+- Stack 영역이 크면 클 수록 Heap 영역이 작아지고, Heap 영역이 크면 클수록 Stack 영역이 작아진다.
+
+5. com.mirean.homepage.bidding.controller 하위에 BiddingController에서
+
+- Logger 란?
+.Logging이란 프로그램 개발 중이나 완료 후에 발생할 수 있는 오류에 대해 디버깅하거나 운영 중인 프로그램 상태를
+모니터링 하기 위해 필요한 정보를 기록하는것이다.
+.SLF4J(Simple Logging Facade for Java)란
+·Log4j 또는 Logback 과 같은 백엔드 Logging Framework의 facade pattern이다.
+.LoaggerFactory를 이용해서 Logger 객체를 생성 한 후에 .debug메소드로 cmd에로그를 남긴다.
+
+-spring 전체적이고도 간략한 흐름
+
+1. 처리요청(URL) : Client WebBrowser 에서 DispatcherServlet 으로 (URL)요청
+
+2. URL과 매핑 되는 컨트롤러 검색 및 리턴 : DispatcherServlet 에서 HandlerMapping 으로 요청 보낸 후 관련 Controller 받음
+
+3. 처리요청 : DispatcherServlet에서 Controller에 처리 요청하고 처리 후 ModelAndView를 다시 리턴 함
+
+4. 실행결과 View 요청 : 다시 DispatcherServlet 에서 ViewResolver로 View 요청후 리턴 받는다.
+
+5. 응답 생성 출력 요청 : 마지막으로 DispatcherServlet이 View에 생성 출력을 요청하고 View는 JSP를 생성하여 클라이언트에게 돌려준다.
+
+클라이언트(URl로 요청) -> 디스패처 서블릿(URl과 관련된 컨트롤러 요청) -> 핸들러 매핑(관련 컨트롤러 반환) ->
+디스패처 서블릿(해당 컨트롤러 호출) -> 컨트롤러(로직 처리 후 모델엔뷰 반환) -> 디스패처서블릿(관련 뷰 요청) -> 뷰 리졸버(관련 뷰 리턴) -> 디스패처 서블릿(뷰에게 출력 요청)
+-> 뷰(JSP 생성 후 클라이언트에 전달) -> 클라이언트(JSP 페이지 보여짐)
+
+
+- @Component 란?
+.개발자가 생성한 Class를 Spring의 Bean으로 등록할 때 사용하는 어노테이션이다. Spring은 해당 어노테이션을 보고
+Spring의 Bean으로 등록한다.
+
+- @ComponentScan 이란?
+.Spring Framework는 @Component, @Service, @Repository, @Controller, @Configuration 중 1개라도 등록된 클래스를 찾으면,
+Context에 bean으로 등록한다. @ComponentScan Annotation이 있는 클래스의 하위 Bean을 등록 될 클래스들을 스캔하여 Bean으로 등록해준다.
+
+- @Bean 이란?
+.해당 어노테이션은 개발자가 제어가 불가능한 외부 라이브러리와 같은 것들을 Bean으로 만들 때 사용한다.
+
+- @Controller 이란?
+.spring에게 해당 Class가 Controller의 역할을 한다고 명시하기 위해 사용하는 어노테이션이다.
+
+- @RequestHeader 란?
+. Request의 header값을 가져올 수 있으며, 해당 어노테이션을 쓴 메소드의 파라미터에 사용한다.
+
+- @Autowired 란?
+. Bean 객체를 주입 받기 위한 방법은 크게 3가지가 있다. 그중 하나에 해당하는 어노테이션이다.
+. spring이 Class를 보고 Type에 맞게(없으면 Name 확인) Bean을 주입한다.
+그외에 Bean 주입 방법은 
+. 생성자 (@AllArgsConstructor 사용)
+. setter
+
+- @RequestMapping 란?
+. @RequestMapping(value="")와 같은 형태로 작성하며, 요청 들어온 URI의 요청과 어노테이션 value값이 일치하면 해당 클래스
+나 메소드가 실행된다. Controller 객체 안의 메소드와 클래스에 적용 가능하다.
+
+. Class 단위에 사용하면 하위 메소드에 모두 적용된다.
+
+- @RequestParam 이란?
+. URL에 전달되는파라미터를 메소드의 인자와 매칭시켜서 파라미터를 받아서 처리할 수 있는 어노테이션으로 사용한다.
+. Json형식의 Body를 MessageConverter를 통해 Java 객체로 변환시킨다.
+
+- @RequestBody 란?
+. Body에 전달되는 데이터를 메소드의 인자와 매칭시켜서 데이터를 받아서 처리할 수 있는 어노테이션이다.
+. 클라이언트가 보내는 HTTP 요청 본문을 Java 오브젝트로 변환한다.
+. json or xml 형태로 값을 전송하면 해당 내용을 Java Object로 변환한다.
+
+- @RequestParam 과 @RequestBody의 차이점은 무엇일까?
+
+- @ResponseBody 란?
+. 해당 어노테이션은 메소드에서 리턴되는 값이 View로 출력되지 않고 HTTP Response Body에 직접 쓰여지게된다.
+. return시 json, xml 같은 데이터를 return 한다.
+
+- @ModelAttribute 란?
+. 클라이언트가 전송하는 HTTP parameter, Body 내용을 Setter 함수를 통해 1:1 객체에 데이터를 연결(바인딩) 한다.
+. RequestBody와는 다르게 HTTP Body 내용은 multipart/form-data 형태를 요구한다. 
+주의 ! json 을 받아 처리할 수는 없다.
+
+- @GetMapping 이란?
+.RequestMapping(Method = RequestMehod.GET)과 똑같은 역할을 한다.
+
+- @PostMapping 이란?
+.RequestMapping(Method = RequestMehod.POST)과 똑같은 역할을 한다.
+
+- @SpringBootTest 란?
+. Spring Boot Test에 필요한 의존성을 제공한다.
+
+- @Test 란?
+. JUnit에서 테스트 할 대상을 표시한다.
+
+Lombok의 대표적인 어노테이션 역할.
+
+- @Setter 란?
+.Class 모든 필드의 Setter method를 생성해줍니다.
+
+- @Getter 란?
+.Class 모든 필드의 Getter method를 생성해줍니다.
+
+- @AllArgsConstructor 란?
+.Class 모든 필드 값을 파라미터로 받는 생성자를 추가합니다.
+
+- @NoArgsConstructor 란?
+.Class 기본 생성자를 자동으로 추가해줍니다.
+
+- @ToString 이란?
+.Class 모든 필드의 toString method를 생성한다.
