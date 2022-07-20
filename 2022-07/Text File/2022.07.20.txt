@@ -1,0 +1,22 @@
+백준
+
+번호: 2447
+
+제목: 별 찍기 - 10
+
+풀이: def draw(n):
+    if n == 1:
+        return ["*"]
+    
+    Stars = draw(n//3)
+    
+    List = []
+    for a in Stars:
+        List.append(a * 3)
+    for a in Stars:
+        List.append(a+" "*(n//3)+a)
+    for a in Stars:
+        List.append(a * 3)
+    return List
+num = int(input())
+print("\n".join(draw(num)))
