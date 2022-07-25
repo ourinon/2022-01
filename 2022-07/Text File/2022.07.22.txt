@@ -1,0 +1,9 @@
+addObject, addAttribute 차이
+
+Model과 ModelAndView 의 차이점
+
+데이터만 저장 vs 데이터와 이동하고자 하는 View Page를 같이 저장한다.
+
+model.addAttribute()
+
+mv.addObject()
