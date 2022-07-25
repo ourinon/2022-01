@@ -1,0 +1,110 @@
+자바스크립트
+(jQuery)
+
+.attr 과 .submit 사용
+
+.attr()은 요소의 속성의 값을 가져오거나 속성을 추가한다.
+
+ex)
+$('div').attr('class');
+이는 곧 div요소의 class 속성의 값을 가져온다.
+
+DOM 이란 곧 HTML, XML 문서의 프로그래밍 인터페이스 이다.  DOM은 문서의 구조화된
+표현을 제공하여 프로그래밍 언어가 DOM 구조에 접근할 수 있는 방법을 제공해준다.
+접근하여 문서 구조, 스타일, 내용 등을 변경할 수 있는것이다.
+
+form - action 예제
+
+속성값은 url 이며 서식데이터(form data)를 서버로 보낼 때 해당 데이터가 도착할 url을 의미한다.
+
+input - name과 id 차이
+.name은 입력된 값을 서버로 전송할 때 사용된다. 즉 서버와 교류할때 필수적으로
+id역할로 사용된다.
+.id는 입력컨트롤을 식별하기 위해서 사용된다.
+
+Invalid location of tag (div). 의미
+
+div 태그의 위치가 바르지 못할때 나타나는 현상이다.
+
+하노이의 탑 핵심 순서는 다음과같다.
+
+1. 첫번째 봉에서 n-1개의 원판을 두번째 봉으로 옮긴다.
+
+2. 첫번째 봉에서 가장 큰원판을 세번째 봉으로 옮긴다.
+
+3. 두번째봉의 남은 원판을 전부 세번째 봉을로 옮긴다.
+
+이를 python 코들 옮기면 다음과같다.
+def hano(n, one, three, two):
+    if n == 1:
+        print(one, three)
+        return
+    
+    hano(n-1, one, two, three)
+    print(one, three)
+    hano(n-1, two, three, one)
+
+3개의 원판을 옮긴다고 가정한다면
+
+hano(3, 1, 3, 2) 이다.
+
+hano(2, 1, 2, 3) == print(1, 3), print(1, 2),  print(3, 2)
+
+print(1, 3)
+
+hano(2, 2, 3, 1) ==
+
+
+hano(2, 1, 2, 3)은
+(
+hano(1, 1, 3, 2) == print(1, 3)
+
+print(1, 2)
+
+hano(1, 3, 2, 1) == print(3, 2)
+)
+
+브루트 포스 = 완전탐색 알고리즘 = 전체탐색
+
+2798번 블랙잭.
+
+시도한 것
+num = list(map(int, input().split())) # 카드 갯수, 숫자의 합
+numList = list(map(int, input().split())) # 카드 숫자 리스트
+resres = 0 
+def gogo(n, n2):
+    if n > n2:
+        return True
+for a in range(len(numList)-1):
+    for b in range(len(numList) - 2):
+        res = numList[a] + numList[a+1]
+        for c in numList:
+            if num[1]-res <= c and c != numList[a] and c != numList[a+1]:
+                res2 = res + c
+                if gogo(res2, resres):
+                    resres = res2
+print(resres)
+
+= 틀린 이유는 완전 탐색 진행후 기존 조건에 맞는 가장 큰수를 보존하지 못했다.
+
+정답 코드
+
+num = list(map(int, input().split())) # 카드 갯수, 숫자의 합
+numList = list(map(int, input().split())) # 카드 숫자 리스트
+res = 0
+for a in range(len(numList)):
+    for b in range(a+1, len(numList)):
+        for c in range(b+1, len(numList)):
+            if numList[a] + numList[b] + numList[c] > num[1]:
+                continue
+            else:
+                res = max(res, numList[a] + numList[b] + numList[c])
+print(res)
+
+max 를 활용하여 큰수를 비교한다.
+
+내가 시도했던것은 max 대용으로 gogo() 란 함수를 이용했다.
+
+
+
+

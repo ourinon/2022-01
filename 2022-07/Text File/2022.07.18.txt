@@ -68,8 +68,8 @@ JVM에 의해 호출되어야 하므로 static 속성역시 가지고 선언되�
 
 - Logger 란?
 .Logging이란 프로그램 개발 중이나 완료 후에 발생할 수 있는 오류에 대해 디버깅하거나 운영 중인 프로그램 상태를
-모니터링 하기 위해 필요한 정보를 기록하는것이다.
-.SLF4J(Simple Logging Facade for Java)란
+모니터링 하기 위q해 필요한 정보를 기록하는것이다.
+.SLF4J(Simple Logging Facade for Java)란 
 ·Log4j 또는 Logback 과 같은 백엔드 Logging Framework의 facade pattern이다.
 .LoaggerFactory를 이용해서 Logger 객체를 생성 한 후에 .debug메소드로 cmd에로그를 남긴다.
 
