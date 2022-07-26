@@ -1,0 +1,57 @@
+public class PolymorphismTest {
+    public static void main(String[] args) {
+        SuperClass superClass = new SuperClass();
+        superClass.methodA();
+        superClass.methodB();
+
+        SuperClass subClass = new SubClass();
+        subClass.methodA();
+        subClass.methodB();
+    }
+}
+
+class SuperClass {
+    void methodA() {
+        System.out.println("SuperClass A ");
+    }
+
+    static void methodB() {
+        System.out.println("SuperClass B");
+    }
+}
+
+class SubClass extends SuperClass {
+    @Override
+    void methodA() {
+        System.out.println("SubClass A");
+    }
+
+    static void methodB() {
+        System.out.println("SubClass B");
+    }
+}
+
+// 예상 결과
+SuperClass A 
+SuperClass B
+SubClass A
+SubClass B
+
+// 실제 결과
+SuperClass A 
+SuperClass B
+SubClass A
+SuperClass B
+
+- 모든 인스턴스 메소드는 런타임에 결정된다.
+- 클래스(static)메소드와 인스턴스 변수는 Compile 시에 결정된다.
+- 따라서 인스턴스인지, statice인지에 따라서 달라진다.
+
+- static 메소드는 클래스가 Compile 되는 시점에 결정되지만 Override의 경우에는
+ Runtime 시점에 사용될 메소드가 결정되기 때문이다.
+
+클라이언트에서 WAS(서버)로 요청을 보낸후 매커니즘
+
+클라이언트 -> httpRequest로 보냄 -> 리퀘스트 객체생성후 서블릿분석(Web.xml)
+-> 해당 서블릿으로 이동후 알맞는 sevice()처리 -> doGet(),doPost()
+-> 다시 처음으로 돌아와 Response 객체 생성후 클라이언트로 반환
