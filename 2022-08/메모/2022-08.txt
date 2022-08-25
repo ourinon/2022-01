@@ -1,0 +1,37 @@
+이클립스 디버그 모드 단축키
+
+F6 - 한 줄씩 실행한다.
+F5 - 한 줄씩 실행하되 함수일 경우 그 함수 내부로 들어간다.
+
+크롬 개발자 디버그 모드 단축키
+
+F9 - 한줄씩 실행하고 함수일경우 그 함수 내부안으로 들어갈것같다.
+F10 - 한줄씩 실행한다.
+
+        	var listNo = (res.data.paginationInfo.currentPageNo - 1) * 10 /*  page 표출 갯수에 맞게 설정 */ + index;
+        	var SERIAL = (list.SERIAL != undefined) ? list.SERIAL : "";
+        	var GUBUN = (list.GUBUN != undefined) ? list.GUBUN : "";
+        	var SPC_NM = (list.SPC_NM != undefined) ? list.SPC_NM : "";
+        	var PRT_NM = (list.PRT_NM != undefined) ? list.PRT_NM : "";
+        	var PRT_CD_NM = (list.PRT_CD_NM != undefined) ? list.PRT_CD_NM : "";
+/*         	var ADD1 = (list.ADD1 != undefined) ? list.ADD1 : "";
+        	var ADD2 = (list.ADD2 != undefined) ? list.ADD2 : "";
+        	var ADD3 = (list.ADD3 != undefined) ? list.ADD3 : "";
+        	var ADD4 = (list.ADD4 != undefined) ? list.ADD4 : "";
+        	var ADD5 = (list.ADD5 != undefined) ? list.ADD5 : ""; */
+        	var ORDER = (list.ORDER != undefined) ? list.ORDER : "";
+        	var BID = (list.BID_NM != undefined) ? list.BID_NM : "";
+        	var STR_DT = (list.STR_DT != undefined) ? list.STR_DT : "";
+        	var START_YEAR = (list.START_YEAR != undefined) ? list.START_YEAR : "";
+        	var END_DT = (list.END_DT != undefined) ? list.END_DT : "";
+        	var SCALE_S = (list.SCALE_S != undefined) ? list.SCALE_S : ""; 
+        	var SCALE_D = (list.SCALE_D_NM != undefined) ? list.SCALE_D_NM : "";
+        	var CMPLT_AMNT = (list.CMPLT_AMNT != undefined) ? list.CMPLT_AMNT : "";
+        	var GOV_PAY = (list.GOV_PAY != undefined) ? list.GOV_PAY : "";
+        	
+        	var STR_DT_YYYY = (moment(STR_DT).format("YYYY.MM.DD") != "Invalid date") ? moment(STR_DT).format("YYYY") : "";
+        	var STR_DT_MM = (moment(STR_DT).format("YYYY.MM.DD") != "Invalid date") ? moment(STR_DT).format("MM") : "";
+        	var START_YEAR_YYYY = (moment(START_YEAR).format("YYYY.MM.DD") != "Invalid date") ? moment(START_YEAR).format("YYYY") : "";
+        	var START_YEAR_MM = (moment(START_YEAR).format("YYYY.MM.DD") != "Invalid date") ? moment(START_YEAR).format("MM") : "";
+        	var END_DT_YYYY = (moment(END_DT).format("YYYY.MM.DD") != "Invalid date") ? moment(END_DT).format("YYYY") : "";
+        	var END_DT_MM = (moment(END_DT).format("YYYY.MM.DD") != "Invalid date") ? moment(END_DT).format("MM") : "";
